@@ -9,7 +9,14 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
+// Models
+let models = require('./models');
+// sync
+models.sequelize.sync().then(() => {
+  console.log('Hey! Database is okay.');
+}).catch((err) => {
+  console.log(err, 'Something messed up on the DB update!')
+});
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -18,12 +25,6 @@ if (process.env.NODE_ENV === "production") {
 
 // Add routes, both API and view
 app.use(routes);
-
-
-// I'm going to use sequelize
-// Connect to the Mongo DB
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/realestate");
-
 
 // Start the API server
 app.listen(PORT, function () {
