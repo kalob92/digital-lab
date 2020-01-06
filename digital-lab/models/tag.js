@@ -23,9 +23,6 @@ module.exports = (sequelize, DataTypes) => {
         },
         extractionID: DataTypes.STRING
     });
-    Tag.associate = (models) => {
-        Tag.belongsTo(models.Extraction, {foreignKey: 'extractionID', as: 'extraction'})
-    };
     return Tag
 };
 

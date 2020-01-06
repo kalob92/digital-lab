@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     });
     Extraction.associate = (models) => {
-        Extraction.hasMany(models.Tag, {as: 'tag'})
+        Extraction.hasMany(models.Tag, {foreignKey: 'extractionID', sourceKey: 'extractID'});
     };
     return Extraction;
 };
