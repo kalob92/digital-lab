@@ -2,7 +2,7 @@
 const express = require('express');
 const logger = require('morgan');
 
-// const routes = require("./routes");
+const routes = require("./routes");
 
 // Set up express
 const app = express();
@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Add routes, both API and view
-// app.use(routes);
+app.use(routes);
 
 // Syncing our sequelize models and then starting our Express app
 db.sequelize.sync().then(() => {
